@@ -83,9 +83,8 @@ export function GlobalStateProvider({ children }: { children: ReactNode }) {
     if (savedDb) {
       try {
         const parsed = JSON.parse(savedDb);
-        // Ensure activePipelineStep is always null on fresh reload
-        parsed.activePipelineStep = null;
-        setState(parsed);
+        // Merge with initialState to prevent new properties from being undefined
+        setState({ ...initialState, ...parsed, activePipelineStep: null });
       } catch (error) {
         console.error('Failed to parse local Sentinel database:', error);
       }
