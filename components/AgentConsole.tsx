@@ -57,9 +57,10 @@ export default function AgentConsole() {
         if (data.messages && data.messages.length > 0) {
           // Process the first message from the queue
           const msg = data.messages[0].body;
-          const from = data.messages[0].from; 
+          const from = data.messages[0].from;
+          const chatId = data.messages[0].chatId;
           
-          processMessage(`[Telegram: ${from}] ${msg}`);
+          processMessage(`[Telegram: ${from}] ${msg}`, chatId);
         }
       } catch (error) {
         console.error('Telegram polling error:', error);
@@ -69,7 +70,7 @@ export default function AgentConsole() {
     return () => clearInterval(interval);
   }, []);
 
-  const processMessage = async (userMsg: string) => {
+  const processMessage = async (userMsg: string, chatId?: number) => {
     if (processingRef.current) return;
     
     setMessages(prev => [...prev, { id: Date.now().toString(), role: 'user', content: userMsg }]);
@@ -127,6 +128,14 @@ export default function AgentConsole() {
             const finalRisk = isBlocked ? 'HIGH' : 'LOW';
             
             setSentinelDecision(isBlocked ? 'BLOCKED' : 'ALLOWED');
+            
+            if (chatId) {
+                fetch('/api/telegram', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ chatId, message: isBlocked ? `🛑 TRANSACTION BLOCKED: The requested amount of ₹${intent.amount} exceeds corporate limits.` : `✅ TRANSACTION APPROVED: ₹${intent.amount} successfully transferred to ${intent.counterparty}.` })
+                }).catch(err => console.error("Failed to send telegram reply:", err));
+            }
             
             const newTx = {
               id: `tx-${Date.now().toString().slice(-4)}`,

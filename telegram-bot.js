@@ -47,6 +47,7 @@ bot.on('message', (msg) => {
             // Add new message
             queue.push({
                 id: msg.message_id,
+                chatId: chatId,
                 from: from,
                 body: msg.text,
                 timestamp: Date.now()
