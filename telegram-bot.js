@@ -40,11 +40,16 @@ bot.on('message', (msg) => {
             return;
         }
 
-        // Send initial processing message
-        bot.sendMessage(chatId, `Agent 04 is processing your request...`);
+        const delay = ms => new Promise(res => setTimeout(res, ms));
 
         (async () => {
             try {
+                // Send initial processing message
+                let sentMsg = await bot.sendMessage(chatId, `[■□□□□□] Step 1: Observing incoming transaction intent...`);
+                await delay(600);
+                
+                await bot.editMessageText(`[■■□□□□] Step 2: Parsing unstructured data via LLM...`, { chat_id: chatId, message_id: sentMsg.message_id });
+
                 // Call the local Next.js API to parse the intent using Groq
                 const res = await fetch('http://localhost:3000/api/agent', {
                     method: 'POST',
@@ -58,17 +63,27 @@ bot.on('message', (msg) => {
 
                 const data = await res.json();
                 const intent = data.intent;
+                
+                await bot.editMessageText(`[■■■□□□] Step 3: Structured Intent: ${intent.action} ₹${intent.amount} to ${intent.counterparty}`, { chat_id: chatId, message_id: sentMsg.message_id });
+                await delay(800);
+                
+                await bot.editMessageText(`[■■■■□□] Step 4: Validating authority and context...`, { chat_id: chatId, message_id: sentMsg.message_id });
+                await delay(800);
+                
+                await bot.editMessageText(`[■■■■■□] Step 5: Risk Engine & Policy Check...`, { chat_id: chatId, message_id: sentMsg.message_id });
+                await delay(800);
+                
+                await bot.editMessageText(`[■■■■■■] Step 6: Decision finalized.`, { chat_id: chatId, message_id: sentMsg.message_id });
+                await delay(500);
 
                 // Sentinel Policy Engine (Local Evaluation)
                 const isBlocked = intent.amount > 5000000; // 50 Lakh limit
                 
-                setTimeout(() => {
-                    if (isBlocked) {
-                        bot.sendMessage(chatId, `🛑 TRANSACTION BLOCKED: The requested amount of ₹${intent.amount} exceeds corporate limits.`);
-                    } else {
-                        bot.sendMessage(chatId, `✅ TRANSACTION APPROVED: ₹${intent.amount} successfully transferred to ${intent.counterparty}.`);
-                    }
-                }, 2000); // Simulate processing delay
+                if (isBlocked) {
+                    await bot.sendMessage(chatId, `🛑 TRANSACTION BLOCKED: The requested amount of ₹${intent.amount} exceeds corporate limits.`);
+                } else {
+                    await bot.sendMessage(chatId, `✅ TRANSACTION APPROVED: ₹${intent.amount} successfully transferred to ${intent.counterparty}.`);
+                }
 
                 // Add to Queue for the Next.js Dashboard to visualize later
                 const queueData = fs.readFileSync(QUEUE_FILE, 'utf8');
