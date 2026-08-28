@@ -1,0 +1,105 @@
+.container {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+
+.header {
+  padding: 24px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.title {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.subtitle {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.tableWrapper {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.table th {
+  padding: 12px 24px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.table td {
+  padding: 16px 24px;
+  font-size: 14px;
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.row {
+  transition: background-color 0.2s ease;
+  cursor: pointer;
+}
+
+.row:hover {
+  background-color: var(--bg-tertiary);
+}
+
+.newRow {
+  animation: highlightRow 3s ease-out;
+}
+
+@keyframes highlightRow {
+  0% { background-color: rgba(16, 185, 129, 0.2); }
+  100% { background-color: transparent; }
+}
+
+.timeCell {
+  font-family: var(--font-mono);
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+
+.agentCell {
+  font-weight: 500;
+}
+
+.amountCell {
+  font-family: var(--font-mono);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.riskLow { color: var(--color-low); }
+.riskModerate { color: var(--color-moderate); }
+.riskHigh { color: var(--color-high); }
+
+.statusText {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.decisionExecuted { color: var(--text-primary); }
+.decisionHeld { color: var(--color-moderate); }
+.decisionBlocked { color: var(--color-high); }
+.decisionEscalated { color: var(--color-brand); }

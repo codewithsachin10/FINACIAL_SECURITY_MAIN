@@ -1,0 +1,19 @@
+0 verbose cli /usr/local/bin/node /usr/local/bin/npm
+1 info using npm@10.9.2
+2 info using node@v22.17.0
+3 silly config load:file:/usr/local/lib/node_modules/npm/npmrc
+4 silly config load:file:/Users/sachingopalakrishnan/FINTRACE/sentinel-app/.npmrc
+5 silly config load:file:/Users/sachingopalakrishnan/.npmrc
+6 silly config load:file:/usr/local/etc/npmrc
+7 verbose title npm cache clean
+8 verbose argv "cache" "clean" "--force"
+9 verbose logfile logs-max:10 dir:/Users/sachingopalakrishnan/FINTRACE/sentinel-app/.npm-local/_logs/2026-08-28T06_55_12_506Z-
+10 verbose logfile /Users/sachingopalakrishnan/FINTRACE/sentinel-app/.npm-local/_logs/2026-08-28T06_55_12_506Z-debug-0.log
+11 warn using --force Recommended protections disabled.
+12 silly logfile done cleaning log files
+13 verbose cwd /Users/sachingopalakrishnan/FINTRACE/sentinel-app
+14 verbose os Darwin 25.3.0
+15 verbose node v22.17.0
+16 verbose npm  v10.9.2
+17 verbose exit 0
+18 info ok

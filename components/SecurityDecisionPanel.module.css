@@ -1,0 +1,139 @@
+.panel {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 24px;
+  height: 100%;
+}
+
+.panelTitle {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: var(--text-primary);
+  margin-bottom: 20px;
+}
+
+.eventList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.eventCard {
+  background-color: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 16px;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.badge {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.badgeBlocked {
+  color: var(--color-high);
+  background-color: var(--color-high-bg);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.badgeHeld {
+  color: var(--color-moderate);
+  background-color: var(--color-moderate-bg);
+  border: 1px solid rgba(245, 158, 11, 0.2);
+}
+
+.badgeExecuted {
+  color: var(--text-primary);
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+}
+
+.time {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+}
+
+.description {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+
+.agent {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.reasons {
+  background-color: var(--bg-secondary);
+  border-radius: 4px;
+  padding: 12px;
+  margin-bottom: 12px;
+  border-left: 2px solid var(--border-color);
+}
+
+.reasonsLabel {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+  display: block;
+}
+
+.reasonsList {
+  list-style: none;
+  font-size: 13px;
+  color: var(--text-secondary);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.reasonsList li {
+  position: relative;
+  padding-left: 12px;
+}
+
+.reasonsList li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--text-muted);
+}
+
+.riskFooter {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border-color);
+}
+
+.riskLabel {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.riskScore {
+  font-size: 14px;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  color: var(--text-primary);
+}
+
+.textHigh { color: var(--color-high); }
+.textModerate { color: var(--color-moderate); }
+.textLow { color: var(--color-low); }

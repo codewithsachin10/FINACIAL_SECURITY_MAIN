@@ -1,0 +1,92 @@
+.container {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+
+.title {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: var(--text-primary);
+  padding: 24px 24px 16px 24px;
+}
+
+.tableWrapper {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.table th {
+  padding: 12px 24px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.table td {
+  padding: 16px 24px;
+  font-size: 14px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.row {
+  transition: background-color 0.2s ease;
+  cursor: pointer;
+}
+
+.row:hover {
+  background-color: var(--bg-tertiary);
+}
+
+.row:last-child td {
+  border-bottom: none;
+}
+
+.agentCell {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.roleCell {
+  color: var(--text-secondary);
+}
+
+.riskBadge {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.riskLow { color: var(--color-low); }
+.riskModerate { color: var(--color-moderate); }
+.riskHigh { color: var(--color-high); }
+
+.statusCell {
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+
+.statusWrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.statusDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.dotHealthy { background-color: var(--color-low); }
+.dotObserving { background-color: var(--color-moderate); }
+.dotRestricted { background-color: var(--color-high); }

@@ -1,0 +1,90 @@
+.container {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 24px;
+  margin-bottom: 24px;
+}
+
+.title {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: var(--text-primary);
+  margin-bottom: 20px;
+}
+
+.threatList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.threatCard {
+  border-left: 2px solid var(--border-color);
+  padding-left: 16px;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.indicatorHigh {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--color-high);
+  letter-spacing: 0.5px;
+}
+
+.indicatorModerate {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--color-moderate);
+  letter-spacing: 0.5px;
+}
+
+.titleText {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.detailRow {
+  display: flex;
+  gap: 8px;
+  font-size: 13px;
+}
+
+.label {
+  color: var(--text-muted);
+  width: 48px;
+}
+
+.value {
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+}
+
+.viewAll {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  transition: color 0.2s;
+}
+
+.viewAll:hover {
+  color: var(--text-primary);
+}

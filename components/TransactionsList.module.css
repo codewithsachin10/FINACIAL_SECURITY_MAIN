@@ -1,0 +1,168 @@
+.container {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.filters {
+  display: flex;
+  gap: 24px;
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--border-color);
+  background-color: var(--bg-tertiary);
+}
+
+.filterGroup {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.filterGroup label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.filterGroup select {
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 13px;
+  outline: none;
+  cursor: pointer;
+}
+
+.filterGroup select:focus {
+  border-color: var(--color-brand);
+}
+
+.tableWrapper {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.table th {
+  padding: 16px 24px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+  font-weight: 600;
+  border-bottom: 1px solid var(--border-color);
+  white-space: nowrap;
+}
+
+.row {
+  border-bottom: 1px solid var(--border-color);
+  transition: background-color 0.15s;
+}
+
+.row:hover {
+  background-color: var(--bg-tertiary);
+}
+
+.row:last-child {
+  border-bottom: none;
+}
+
+.table td {
+  padding: 16px 24px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.idCell {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-muted) !important;
+}
+
+.timeCell {
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+
+.agentCell {
+  color: var(--text-primary) !important;
+  font-weight: 500;
+}
+
+.agentId {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-muted);
+  font-weight: 400;
+  margin-left: 4px;
+}
+
+.counterpartyCell {
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+
+.alignRight {
+  text-align: right;
+}
+
+.amountCell {
+  text-align: right;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  color: var(--text-primary) !important;
+}
+
+/* Badges */
+.badge {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.riskLow {
+  background-color: var(--color-low-bg);
+  color: var(--color-low);
+}
+
+.riskModerate {
+  background-color: var(--color-moderate-bg);
+  color: var(--color-moderate);
+}
+
+.riskHigh {
+  background-color: var(--color-high-bg);
+  color: var(--color-high);
+}
+
+/* Status Text */
+.statusText {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.decisionExecuted { color: var(--color-low); }
+.decisionHeld { color: var(--color-moderate); }
+.decisionBlocked { color: var(--color-high); }
+.decisionEscalated { color: var(--color-brand); }
+
+.emptyState {
+  text-align: center;
+  padding: 48px !important;
+  color: var(--text-muted) !important;
+  font-style: italic;
+}
