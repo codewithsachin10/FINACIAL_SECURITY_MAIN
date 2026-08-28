@@ -92,6 +92,68 @@ export function GlobalStateProvider({ children }: { children: ReactNode }) {
     }
   }, [state, mounted]);
 
+  // Global Telegram Queue Poller
+  React.useEffect(() => {
+    if (!mounted) return;
+    
+    const interval = setInterval(async () => {
+      try {
+        const res = await fetch('/api/telegram?t=' + Date.now(), { cache: 'no-store' });
+        const data = await res.json();
+        
+        if (data.messages && data.messages.length > 0) {
+          data.messages.forEach((msg: any) => {
+            // Process fully evaluated intents from telegram-bot.js
+            if (msg.intent && typeof msg.isBlocked !== 'undefined') {
+              const finalStatus = msg.isBlocked ? 'BLOCKED' : 'EXECUTED';
+              const finalRisk = msg.isBlocked ? 'HIGH' : 'LOW';
+              
+              const newTx = {
+                id: `tx-${msg.id || Date.now().toString().slice(-4)}`,
+                agentId: 'ag-04',
+                agentName: 'SettlementAI',
+                time: new Date().toISOString(),
+                action: msg.intent.action,
+                amount: msg.intent.amount,
+                currency: msg.intent.currency,
+                counterparty: msg.intent.counterparty,
+                risk: finalRisk,
+                decision: finalStatus
+              } as Transaction;
+              
+              addTransaction(newTx);
+              
+              addAuditLog({
+                id: `log-${Date.now()}-${Math.random()}`,
+                timestamp: new Date().toISOString(),
+                actor: 'SYSTEM',
+                action: msg.isBlocked ? 'TRANSACTION_BLOCKED' : 'TRANSACTION_EXECUTED',
+                details: `Agent 04 attempted ${msg.intent.action} of ${new Intl.NumberFormat('en-IN', { style: 'currency', currency: msg.intent.currency, maximumFractionDigits: 0 }).format(msg.intent.amount)}. Decision: ${finalStatus}.`,
+                status: msg.isBlocked ? 'WARNING' : 'SUCCESS'
+              });
+
+              if (msg.isBlocked) {
+                addThreat({
+                  id: `thr-${Date.now()}-${Math.random()}`,
+                  timestamp: new Date().toISOString(),
+                  severity: 'HIGH',
+                  agentName: 'SettlementAI',
+                  description: `Unauthorized high-value transaction attempt (${new Intl.NumberFormat('en-IN', { style: 'currency', currency: msg.intent.currency, maximumFractionDigits: 0 }).format(msg.intent.amount)}).`,
+                  recommendedAction: 'Immediate manual review required.',
+                  status: 'ACTIVE'
+                });
+              }
+            }
+          });
+        }
+      } catch (error) {
+        // ignore polling errors
+      }
+    }, 2500);
+
+    return () => clearInterval(interval);
+  }, [mounted]);
+
   const addTransaction = (tx: Transaction) => {
     setState(prev => {
       const newTotal = prev.metrics.transactionsToday.total + 1;
