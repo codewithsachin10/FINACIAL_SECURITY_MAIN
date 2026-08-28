@@ -51,7 +51,7 @@ export default function AgentConsole() {
       if (processingRef.current) return;
       
       try {
-        const res = await fetch('/api/telegram');
+        const res = await fetch('/api/telegram', { cache: 'no-store' });
         const data = await res.json();
         
         if (data.messages && data.messages.length > 0) {
