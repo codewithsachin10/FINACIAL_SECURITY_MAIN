@@ -45,24 +45,24 @@ export default function AgentConsole() {
     processingRef.current = isProcessing;
   }, [isProcessing]);
 
-  // WhatsApp Polling
+  // Telegram Polling
   useEffect(() => {
     const interval = setInterval(async () => {
       if (processingRef.current) return;
       
       try {
-        const res = await fetch('/api/whatsapp');
+        const res = await fetch('/api/telegram');
         const data = await res.json();
         
         if (data.messages && data.messages.length > 0) {
           // Process the first message from the queue
           const msg = data.messages[0].body;
-          const from = data.messages[0].from.split('@')[0]; // Extract phone number
+          const from = data.messages[0].from; 
           
-          processMessage(`[WhatsApp: ${from}] ${msg}`);
+          processMessage(`[Telegram: ${from}] ${msg}`);
         }
       } catch (error) {
-        console.error('WhatsApp polling error:', error);
+        console.error('Telegram polling error:', error);
       }
     }, 2000);
     

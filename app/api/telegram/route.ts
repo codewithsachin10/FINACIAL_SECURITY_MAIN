@@ -4,7 +4,7 @@ import path from 'path';
 
 export async function GET() {
   try {
-    const queueFile = path.join(process.cwd(), 'whatsapp_queue.json');
+    const queueFile = path.join(process.cwd(), 'telegram_queue.json');
     
     if (!fs.existsSync(queueFile)) {
       return NextResponse.json({ messages: [] });
@@ -26,7 +26,7 @@ export async function GET() {
 
     return NextResponse.json({ messages: [] });
   } catch (error: any) {
-    console.error('Error reading whatsapp queue:', error);
+    console.error('Error reading telegram queue:', error);
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }
