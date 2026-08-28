@@ -1,6 +1,6 @@
 'use client';
 import React, { createContext, useContext, useState, ReactNode } from 'react';
-import { Agent, Transaction, Policy, ThreatAlert, AuditLog, DashboardMetrics } from './types';
+import { Agent, Transaction, Policy, ThreatAlert, AuditLog, DashboardMetrics, Bill } from './types';
 
 interface GlobalState {
   agents: Agent[];
@@ -10,6 +10,7 @@ interface GlobalState {
   auditLogs: AuditLog[];
   metrics: DashboardMetrics;
   activePipelineStep: string | null;
+  bills: Bill[];
   addTransaction: (tx: Transaction) => void;
   addAuditLog: (log: AuditLog) => void;
   addThreat: (threat: ThreatAlert) => void;
@@ -19,6 +20,13 @@ interface GlobalState {
 
 const initialState: Omit<GlobalState, 'addTransaction' | 'addAuditLog' | 'addThreat' | 'updatePolicy' | 'setActivePipelineStep'> = {
   activePipelineStep: null,
+  bills: [
+    { id: 'bill-001', vendor: 'AWS Cloud Services', amount: 145000, dueDate: '2026-09-01', status: 'PENDING', category: 'Infrastructure' },
+    { id: 'bill-002', vendor: 'WeWork Office Rent', amount: 850000, dueDate: '2026-09-05', status: 'PENDING', category: 'Real Estate' },
+    { id: 'bill-003', vendor: 'Salesforce License', amount: 320000, dueDate: '2026-08-30', status: 'OVERDUE', category: 'Software' },
+    { id: 'bill-004', vendor: 'Delta Logistics', amount: 50000, dueDate: '2026-09-10', status: 'PENDING', category: 'Logistics' },
+    { id: 'bill-005', vendor: 'Google Workspace', amount: 45000, dueDate: '2026-08-25', status: 'PAID', category: 'Software' }
+  ],
   agents: [
     {
       id: 'ag-04',

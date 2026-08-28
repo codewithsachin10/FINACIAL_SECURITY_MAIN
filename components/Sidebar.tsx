@@ -65,6 +65,12 @@ export default function Sidebar() {
             </Link>
           </li>
           <li className={styles.navItem}>
+            <Link href="/bills" className={`${styles.navLink} ${pathname === '/bills' ? styles.active : ''}`}>
+              <FileText size={18} strokeWidth={1.5} />
+              <span>Bills</span>
+            </Link>
+          </li>
+          <li className={styles.navItem}>
             <Link href="/console" className={`${styles.navLink} ${pathname === '/console' ? styles.active : ''}`}>
               <Terminal size={18} strokeWidth={1.5} />
               <span>Agent Console</span>

@@ -89,3 +89,12 @@ export interface AuditLog {
   details: string;
   status: 'SUCCESS' | 'FAILURE' | 'WARNING';
 }
+
+export interface Bill {
+  id: string;
+  vendor: string;
+  amount: number;
+  dueDate: string;
+  status: 'PENDING' | 'PAID' | 'OVERDUE';
+  category: string;
+}
