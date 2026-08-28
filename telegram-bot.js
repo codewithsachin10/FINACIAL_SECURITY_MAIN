@@ -5,7 +5,7 @@ const path = require('path');
 // ==========================================
 // REPLACE WITH YOUR TELEGRAM BOT TOKEN
 // Get it from @BotFather on Telegram
-const token = 'YOUR_TELEGRAM_BOT_TOKEN_HERE';
+const token = '8725968129:AAGKatH7IgKRr2jvTy5OVzR8DW0PXPSI5Lk';
 // ==========================================
 
 if (token === 'YOUR_TELEGRAM_BOT_TOKEN_HERE') {
